@@ -18,8 +18,8 @@ class GoodReadsSpider(scrapy.Spider):
         for quote in response.selector.xpath("//div[@class='quote']"):
             loader= ItemLoader(item=QuoteItem(), selector=quote, response=response)
             loader.add_xpath('text', ".//div[@class='quoteText']/text()[1]")
-            loader.add_xpath('author', ".//div[@class='quoteText']/child::a/text()")
-            loader.add_xpath('tags', ".//div[@class='greyText smallText left']/a/text()")
+            loader.add_xpath('author', ".//div[@class='quoteText']/child::a")
+            loader.add_xpath('tags', ".//div[@class='greyText smallText left']/a")
             yield loader.load_item()
             
         
