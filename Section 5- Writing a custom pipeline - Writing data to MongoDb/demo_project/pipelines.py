@@ -27,7 +27,7 @@ class MongoDbPipeline(object):
         self.client= MongoClient(self.mongo_uri)
         self.db= self.client[self.mongo_db]
     
-    def closed_spider(self, spider):
+    def close_spider(self, spider):
         self.client.close()
     
     def process_item(self, item, spider):
