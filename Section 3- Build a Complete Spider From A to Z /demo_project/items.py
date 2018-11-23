@@ -22,7 +22,7 @@ class QuoteItem(scrapy.Item):
         output_processor= TakeFirst()
     )
     author= scrapy.Field(
-        input_processor= MapCompose(remove_tags),
+        input_processor= MapCompose(remove_tags, strip_value),
         output_processor= TakeFirst()
     )
     tags= scrapy.Field(
