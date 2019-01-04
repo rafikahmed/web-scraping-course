@@ -12,17 +12,14 @@ from w3lib.html import remove_tags
 def remove_quotations(value):
     return value.replace(u"\u201d", '').replace(u"\u201c", '')
 
-def strip_value(value):
-    return value.strip()
-
 
 class QuoteItem(scrapy.Item):
     text= scrapy.Field(
-        input_processor= MapCompose(strip_value, remove_quotations),
+        input_processor= MapCompose(str.strip, remove_quotations),
         output_processor= TakeFirst()
     )
     author= scrapy.Field(
-        input_processor= MapCompose(remove_tags, strip_value),
+        input_processor= MapCompose(remove_tags, str.strip),
         output_processor= TakeFirst()
     )
     tags= scrapy.Field(
